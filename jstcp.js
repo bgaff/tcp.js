@@ -25,7 +25,7 @@ var TCPProxy = function(socketio_client, encoding, nodelay) {
 	var sock_connected = false;
 	var socketio_connected = true; // tcp proxy can only be constructed
 								   // after the socketio connection has been established
-	
+							
 	client.on("disconnect", function() {
 		// clean up the tcp connection if it's open.
 		socketio_connected = false;
@@ -139,6 +139,7 @@ TCPClient.prototype.connect = function() {
 	
 	if(typeof this._socket === "undefined" || this._socket === null)
 		this._socket = io.connect();
+	
 		
 	this._socket.on("connect", function(){
 		that._connected_to_socket = true;
@@ -175,7 +176,7 @@ if (typeof exports !== "undefined" && exports !== null) {
   module.exports = TCPProxy; // we only need to expose TCPProxy to node.js
 							 // using a TCPClient wrapper in node would not make any sense.
   TCPUtil.base64 = require('base64');
-  TCPUtil.log = require('util').log;
+  TCPUtil.log = function() { }; // supress logging
 } else {
-  TCPUtil.log = console.log;
+  TCPUtil.log = function() { }; //console.log;
 }

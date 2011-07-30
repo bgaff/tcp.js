@@ -54,17 +54,12 @@ var TCPProxy = function(socketio_client, encoding, nodelay) {
 					if(typeof(TCPUtil.base64.decode) === 'function'){
 						var base64decoded = TCPUtil.base64.decode(data.data);
 						raw = new Buffer(base64decoded, 'binary');
-						for( var i = 0; i < data.data.length ){
-							
-						}
-						
-						
 					} else {
-						console.log("ERROR: NO base64 decoder available.");
+						TCPUtil.log("ERROR: NO base64 decoder available.");
 					}
 				}
 				else if (data.encoding === 'intarr') {
-					console.log("Message to forward is intarr encoded: " + data.data);
+					TCPUtil.log("Message to forward is intarr encoded: " + data.data);
 					
 					raw = '';
 					for(i = 0; i < data.data.length; i++) { 
@@ -192,4 +187,6 @@ if (typeof exports !== "undefined" && exports !== null) {
 							 // using a TCPClient wrapper in node would not make any sense.
   TCPUtil.base64 = require('base64');
   TCPUtil.log = require('util').log;
-} 
+} else {
+  TCPUtil.log = console.log;
+}

@@ -63,19 +63,8 @@ var TCPProxy = function(socketio_client, encoding, nodelay) {
 					
 					raw = '';
 					for(i = 0; i < data.data.length; i++) { 
-						//raw[i] = String.fromCharCode(data.data[i])[0];
 						raw += (String.fromCharCode(data.data[i])[0]);
-						//raw[i] = String.fromCharCode(data.data[i])[0];
-						//console.log(data.data[i].charCodeAt(0));
-					}
-					//var buf = new Buffer(raw, 'binary');
-					//for(i = 0; i < data.data.length; i++)
-					// raw[i] = String.fromCharCode(data.data[i]);
-					//raw = buf;
-					//	console.log(data.data.length + " bytes: " + raw.toString('utf8', 0, data.data.length));
-			
-					
-					
+					}	
 				} else { raw = data.data; }
 				
 				if(sock_connected)

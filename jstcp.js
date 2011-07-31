@@ -13,7 +13,7 @@ TCPUtil.cleanFromTransmit = JSON.parse;
 
 var TCPProxy = function(socketio_client, encoding, nodelay) {
 	var sock_encoding = encoding || 'utf8';
-	var opt_nodelay = nodelay || true;
+	var opt_nodelay = nodelay || false;
 	
 	var net = require("net");
 	var socket = new net.Socket();
@@ -57,14 +57,6 @@ var TCPProxy = function(socketio_client, encoding, nodelay) {
 					} else {
 						TCPUtil.log("ERROR: NO base64 decoder available.");
 					}
-				}
-				else if (data.encoding === 'intarr') {
-					TCPUtil.log("Message to forward is intarr encoded: " + data.data);
-					
-					raw = '';
-					for(i = 0; i < data.data.length; i++) { 
-						raw += (String.fromCharCode(data.data[i])[0]);
-					}	
 				} else { raw = data.data; }
 				
 				if(sock_connected)

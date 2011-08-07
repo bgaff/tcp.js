@@ -1,11 +1,4 @@
-//
-// JSTCP Library - a JavaScript TCP wrapper for Node JS that will expose TCP connections to the browser.
-//
-// Written by Brian Geffon (briangeffon {at} gmail {dot} com)
-//
-// Requires: Socket.io and Base64 module: npm install socket.io base64
-//
-
+// Written By Brian Geffon
 var TCPUtil = { };
 
 TCPUtil.prepareForTransmit = JSON.stringify;

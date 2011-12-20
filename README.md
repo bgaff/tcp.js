@@ -5,25 +5,25 @@ TCP.js is a library developed during the LinkedIn intern hackday 2011. It will p
 
 Sample Code
 -------
-var host = "127.0.0.1";
-var port = 5900;
+    var host = "127.0.0.1";
+    var port = 5900;
+    
+    var sock = new TCPClient(host,port);
+    
+    sock.on("connected", function() {
+        log("connected to " + host + ":" + port);
+        sock.send("Hello from a browser!");
+    });
+    
+    sock.on("closed", function() {
+      log("The connection has closed :(");
+    });
 
-var sock = new TCPClient(host,port);
+    sock.on("data", function(msg){
+      log("data arrived: " + msg);
+    });
 
-sock.on("connected", function() {
-  log("connected to " + host + ":" + port);
-  sock.send("Hello from a browser!");
-});
-
-sock.on("closed", function() {
-  log("The connection has closed :(");
-});
-
-sock.on("data", function(msg){
-  log("data arrived: " + msg);
-});
-
-sock.connect();
+    sock.connect();
 
 Disclaimer
 ----------
